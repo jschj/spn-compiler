@@ -20,6 +20,7 @@
 
 #include "mlir/Transforms/DialectConversion.h"
 
+#include "firp.hpp"
 #include "AXIStream.hpp"
 #include "ShiftRegister.hpp"
 #include "firpQueue.hpp"
@@ -104,7 +105,7 @@ public:
       spnVarCount, bitsPerVar, spnResultWidth
     ),
     spnVarCount(spnVarCount), bitsPerVar(bitsPerVar), spnResultWidth(spnResultWidth)
-    {}
+    { build(); }
 
   void body();
 };
@@ -128,7 +129,7 @@ public:
     ),
     slaveConfig(slaveConfig), masterConfig(masterConfig),
     spnVarCount(spnVarCount), bitsPerVar(bitsPerVar), resultWidth(resultWidth), fifoDepth(fifoDepth), bodyDelay(bodyDelay)
-    {}
+    { build(); }
 
   void body();
 };
@@ -146,7 +147,7 @@ public:
       spnVarCount, bitsPerVar, resultWidth, fifoDepth, bodyDelay
     ),
     spnVarCount(spnVarCount), bitsPerVar(bitsPerVar), resultWidth(resultWidth), fifoDepth(fifoDepth), bodyDelay(bodyDelay)
-    {}
+    { build(); }
 
   void body();
 };
@@ -202,7 +203,7 @@ public:
       spnVarCount, bitsPerVar, resultWidth, fifoDepth, bodyDelay
     ),
     spnVarCount(spnVarCount), bitsPerVar(bitsPerVar), resultWidth(resultWidth), fifoDepth(fifoDepth), bodyDelay(bodyDelay)
-    {}
+    { build(); }
 
   void body();
   void implementHWforESI(ModuleOp *root);

@@ -75,7 +75,7 @@ Operation *EmbedController::implementESIreceiver(ModuleOp *root, uint32_t varCou
 
   circt::hw::HWModuleOp recvOp = builder.create<circt::hw::HWModuleOp>(
     builder.getUnknownLoc(),
-    builder.getStringAttr("ESIReceiverLol"), recvPorts
+    builder.getStringAttr("ESIReceiverAbc"), recvPorts
   );
 
   // descend into the body and construct it
@@ -111,7 +111,7 @@ Operation *EmbedController::implementESIsender(ModuleOp *root) {
 
   circt::hw::HWModuleOp sendOp = builder.create<circt::hw::HWModuleOp>(
     builder.getUnknownLoc(),
-    builder.getStringAttr("ESISenderLol"), sendPorts
+    builder.getStringAttr("ESISenderAbc"), sendPorts
   );
 
   // descend into the body and construct it
@@ -182,7 +182,7 @@ ExecutionResult EmbedController::executeStep(ModuleOp *root) {
 
   firpContext()->finish();
   //firpContext()->verify();
-  //firpContext()->dump();
+  firpContext()->dump();
 
   ExecutionResult result = convertFirrtlToHw(*root, spnBody.value());
 
@@ -735,7 +735,10 @@ class SPNController(config: SPNControllerConfig, modGen: SPNControllerConfig => 
   Notes:
     - We seem to be able (theoretically) to lift clk and rst into the ESI-space via ESIPureModuleInputOp.
 
-
+  Agenda:
+    - Implement AXI lowering for ESI?
+      - We would have a top level module with a AXI4 Lite slave, AXI4 master, AXI4 slave ports.
+    - Reimplement operators in FIRRTL? Make use of lowering passes for better bit width optimization?
 
   Testing stuff:
 

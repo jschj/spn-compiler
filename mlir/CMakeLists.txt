@@ -65,6 +65,10 @@ set(SPN_DIALECT_INCLUDE_DIRS
 set(FIRRTLPP_INCLUDE_DIRS
         ${CMAKE_CURRENT_SOURCE_DIR}/FIRRTLPP/include
         PARENT_SCOPE)
+set(FIRRTLPP_INCLUDE_DIRS
+        ${CMAKE_CURRENT_SOURCE_DIR}/FIRRTLPP/include
+        )
+message("Setting FIRRTLPP_INCLUDE_DIRS to " ${FIRRTLPP_INCLUDE_DIRS})
 
 add_subdirectory(include)
 add_subdirectory(lib)
